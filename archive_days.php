@@ -11,7 +11,7 @@
 $plugin_description = gettext("Includes template functions to allow the Archive page to drill down to days, not just months. Zenphoto core functionality already permits searcing for photos by day, as well as month.");
 $plugin_author = "Marcus Wong (wongm)";
 $plugin_version = '1.1.0'; 
-$plugin_URL = "http://code.google.com/p/wongm-zenphoto-plugins/";
+$plugin_URL = "https://github.com/wongm/zenphoto-archive-days/";
 
 /**
  * Prints a compendum of months, with links to a second archive page that will the days that blowong to that month.
