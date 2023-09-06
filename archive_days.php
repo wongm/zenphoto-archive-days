@@ -200,7 +200,7 @@ function printArchiveTitle() {
 function getAllDaysInMonth($month, $order='desc') {
 	$alldates = array();
 	$cleandates = array();
-	$sql = "SELECT `date` FROM ". prefix('images') . " WHERE `date` <= '$month-31 23:59:59' AND `date` >= '$month-01 00:00:00'";
+	$sql = "SELECT `date` FROM ". prefix('images') . " WHERE `date` <= LAST_DAY('$month-05 23:59:59') AND `date` >= '$month-01 00:00:00'";
 	if (!zp_loggedin()) { $sql .= " AND `show` = 1"; }
 	$result = query_full_array($sql);
 	foreach($result as $row){
