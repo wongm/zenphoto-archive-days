@@ -117,7 +117,7 @@ function printSingleMonthArchive($class='archive', $yearid='year', $monthid='mon
 		}
 		
 		// link to search results
-		echo "<li><a href=\"".html_encode(getSearchURL(null, $key, null, 0, null))."\" rel=\"nofollow\">$month $day ($val photos)</a></li>\n";
+		echo "<li><a href=\"".html_encode(SearchEngine::getSearchURL(null, $key, null, 0, null))."\" rel=\"nofollow\">$month $day ($val photos)</a></li>\n";
 	}
 	echo "</ul>\n</li>\n</ul>\n";
 }
@@ -151,7 +151,7 @@ function isSingleMonthArchive() {
 function getSingleMonthArchiveTitle() {
 	if (isSingleMonthArchive()) {
 		$month = $_GET['page'];
-		$splitmonth = explode('-', $month);		
+		$splitmonth = explode('-', $month);	
 		return strftime('%B %Y', mktime(1, 1, 1, $splitmonth[1], 1, $splitmonth[0]));
 	}
 }
@@ -198,11 +198,12 @@ function printArchiveTitle() {
  * @return array
  */
 function getAllDaysInMonth($month, $order='desc') {
+	global $_zp_db;
 	$alldates = array();
 	$cleandates = array();
-	$sql = "SELECT `date` FROM ". prefix('images') . " WHERE `date` <= LAST_DAY('$month-05 23:59:59') AND `date` >= '$month-01 00:00:00'";
+	$sql = "SELECT `date` FROM ". $_zp_db->prefix('images') . " WHERE `date` <= LAST_DAY('$month-05 23:59:59') AND `date` >= '$month-01 00:00:00'";
 	if (!zp_loggedin()) { $sql .= " AND `show` = 1"; }
-	$result = query_full_array($sql);
+	$result = $_zp_db->queryFullArray($sql);
 	foreach($result as $row){
 		$alldates[] = $row['date'];
 	}
