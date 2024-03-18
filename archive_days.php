@@ -74,7 +74,7 @@ function printAllMonths($class='archive', $yearid='year', $monthid='month', $ord
 		echo "<li><a href=\"".html_encode($archiveURL)."\" rel=\"nofollow\">$month ($val photos)</a>\n";
 		
 		// link to search page for all photos of this month
-		echo "<a href=\"".html_encode(getSearchURL(null, substr($key, 0, 7), null, 0, null))."\" rel=\"nofollow\">(show all)</a></li>\n";
+		echo "<a href=\"".html_encode(SearchEngine::getSearchURL(null, substr($key, 0, 7), null, 0, null))."\" rel=\"nofollow\">(show all)</a></li>\n";
 	}
 	echo "</ul>\n</li>\n</ul>\n";
 }
