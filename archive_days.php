@@ -47,7 +47,7 @@ function printAllMonths($class='archive', $yearid='year', $monthid='month', $ord
 	
 	echo "\n<ul $class>\n";
 	
-	while (list($key, $val) = each($datecount)) {
+	foreach ($datecount as $key => $val) {
 		$nr++;
 		if ($key == '0000-00-01') {
 			$year = "no date";
@@ -99,7 +99,8 @@ function printSingleMonthArchive($class='archive', $yearid='year', $monthid='mon
 	$lastyear = "";
 	echo "\n<ul $class>\n";
 	$nr = 0;
-	while (list($key, $val) = each($datecount)) {
+	
+	foreach ($datecount as $key => $val) {
 		$nr++;
 		if ($key == '0000-00-01') {
 			$year = "no date";
@@ -151,7 +152,7 @@ function isSingleMonthArchive() {
 function getSingleMonthArchiveTitle() {
 	if (isSingleMonthArchive()) {
 		$month = $_GET['page'];
-		$splitmonth = explode('-', $month);	
+		$splitmonth = explode('-', $month);
 		return strftime('%B %Y', mktime(1, 1, 1, $splitmonth[1], 1, $splitmonth[0]));
 	}
 }
